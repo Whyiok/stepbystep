@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% set active_page = 'dashboard' %}
+
+{% block title %}Мои инструкции - StepByStep{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('asset', folder='css', filename='dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main class="dashboard-container">
+        <div class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <div class="user-info">
+                    <div class="user-avatar-large">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-user"></use></svg>
+                    </div>
+                    <h3>Гость</h3>
+                    <p class="user-role">Автор</p>
+                </div>
+                
+                <div class="sidebar-stats">
+                    <div class="sidebar-stat">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-checklist"></use></svg>
+                        <div>
+                            <div class="stat-number" id="dashboardInstructionCount">0</div>
+                            <div class="stat-label">Инструкций</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-stat">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+                        <div>
+                            <div class="stat-number" id="dashboardViews">—</div>
+                            <div class="stat-label">Прохождений</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-stat">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-star"></use></svg>
+                        <div>
+                            <div class="stat-number" id="dashboardRating">—</div>
+                            <div class="stat-label">Рейтинг</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-nav">
+                <a href="#myInstructions" class="sidebar-link active"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-checklist"></use></svg> Мои инструкции</a>
+                <a href="#analytics" class="sidebar-link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-chart"></use></svg> Аналитика</a>
+                <a href="#recent-comments" class="sidebar-link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-comments"></use></svg> Комментарии</a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="{{ url_for('page', name='create.html') }}" class="btn btn-primary btn-full">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus-circle"></use></svg> Новая инструкция
+                </a>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Мои инструкции</h1>
+                <div class="dashboard-actions">
+                    <div class="search-box">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg>
+                        <input type="search" placeholder="Поиск по моим инструкциям..." aria-label="Поиск по моим инструкциям">
+                    </div>
+                    <select class="filter-select">
+                        <option value="all">Все инструкции</option>
+                        <option value="published">Созданные в этом браузере</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="instructions-list" id="myInstructions" aria-label="Созданные инструкции">
+                <!-- Инструкции автора будут загружены через JavaScript -->
+            </div>
+            
+            <section class="dashboard-section" id="analytics">
+                <div class="section-header"><h2>Аналитика</h2></div>
+                <p class="dashboard-note">Серверная аналитика не подключена. Созданные инструкции и черновые данные хранятся только в этом браузере.</p>
+            </section>
+            
+            <div class="dashboard-section" id="recent-comments">
+                <div class="section-header">
+                    <h2>Последние комментарии</h2>
+                    <span class="dashboard-note">Локальная демо-версия</span>
+                </div>
+                
+                <div class="comments-list">
+                    <p class="dashboard-note">Комментарии появятся после подключения серверного хранения.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="deleteModal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Удалить инструкцию</h3>
+                <button class="modal-close" type="button" aria-label="Закрыть окно">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Вы уверены, что хотите удалить инструкцию "<span id="deleteInstructionTitle"></span>"?</p>
+                <p class="warning-text"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-alert"></use></svg> Это действие нельзя отменить.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelDeleteBtn">Отмена</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">Удалить</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_text %}Платформа для авторов инструкций.{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('asset', folder='js', filename='dashboard.js') }}"></script>
+{% endblock %}

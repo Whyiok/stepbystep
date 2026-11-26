@@ -1,0 +1,51 @@
+/* Дополнительные стили для аутентификации */
+
+.auth-container {
+    min-height: calc(100vh - 150px);
+}
+
+.auth-card {
+    max-width: 450px;
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+}
+
+.social-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn-social {
+    justify-content: center;
+}
+
+.form-terms {
+    margin-bottom: 1.5rem;
+}
+
+.form-terms a {
+    color: #191919;
+    text-decoration: none;
+}
+
+.form-terms a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 1rem;
+    }
+    
+    .auth-card {
+        padding: 2rem;
+    }
+    
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" class="has-nav-search">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StepByStep - Платформа интерактивных инструкций{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('asset', folder='css', filename='style.css') }}">
+    {%- block styles %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('asset', folder='css', filename='polish.css') }}">
+</head>
+<body class="has-nav-search">
+    {% include "partials/icons.html" %}
+    {% include "partials/header.html" %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer -%}
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; {{ current_year }} StepByStep. {% block footer_text %}Платформа интерактивных инструкций.{% endblock %}</p>
+            </div>
+        </div>
+    </footer>
+    {%- endblock %}
+
+    <script src="{{ url_for('asset', folder='js', filename='data.js') }}"></script>
+    <script src="{{ url_for('asset', folder='js', filename='main.js') }}"></script>
+    <script src="{{ url_for('asset', folder='js', filename='search.js') }}"></script>
+    {%- block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Прохождение инструкции - StepByStep{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('asset', folder='css', filename='instruction.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main class="instruction-container">
+        <div class="instruction-sidebar">
+            <div class="instruction-info">
+                <div class="instruction-header">
+                    <h1 id="instructionTitle">Как собрать ПК</h1>
+                    <div class="instruction-meta">
+                        <span class="author">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-user"></use></svg> <span id="authorName">Алексей Петров</span>
+                        </span>
+                        <span class="difficulty">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-signal"></use></svg> <span id="difficultyLevel">Средняя</span>
+                        </span>
+                        <span class="time">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span id="estimatedTime">45 мин</span>
+                        </span>
+                    </div>
+                    <div class="stats">
+                        <span><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg> <span id="completedCount">248</span> выполнили</span>
+                        <span><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-star"></use></svg> <span id="ratingValue">4.8</span>/5</span>
+                    </div>
+                </div>
+                
+                <div class="steps-list" id="stepsList">
+                    <!-- Шаги будут загружены через JavaScript -->
+                </div>
+            </div>
+            
+            <div class="sidebar-actions">
+                <button class="btn btn-outline btn-full" id="forkBtn">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-git-branch"></use></svg> Форк инструкции
+                </button>
+                <button class="btn btn-outline btn-full" id="reportBtn">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-flag"></use></svg> Сообщить о проблеме
+                </button>
+            </div>
+        </div>
+
+        <div class="instruction-content">
+            <div class="current-step">
+                <div class="step-header">
+                    <div class="step-indicator">
+                        <span class="step-number" id="currentStepNumber">1</span>
+                        <span class="step-status">из <span id="totalSteps">8</span></span>
+                    </div>
+                    <h2 id="stepTitle">Подготовка компонентов</h2>
+                    <div class="step-actions">
+                        <button class="btn btn-outline" id="prevStepBtn">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-left"></use></svg> Назад
+                        </button>
+                        <button class="btn btn-primary" id="nextStepBtn">
+                            Дальше <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="stepContent">
+                    <!-- Контент шага будет загружен через JavaScript -->
+                </div>
+                
+                <div class="step-checklist" id="stepChecklist">
+                    <!-- Чек-лист шага будет загружен через JavaScript -->
+                </div>
+                
+                <div class="step-actions-bottom">
+                    <button class="btn btn-success" id="markCompleteBtn">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check-circle"></use></svg> Отметить шаг выполненным
+                    </button>
+                    <div class="additional-actions">
+                        <button class="btn btn-text" id="addNoteBtn">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-sticky-note"></use></svg> Добавить заметку
+                        </button>
+                        <button class="btn btn-text" id="commentBtn">
+                            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-comment"></use></svg> Комментировать
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comments-section">
+                <h3><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-comments"></use></svg> Комментарии к шагу</h3>
+                <div class="comments-list" id="commentsList">
+                    <!-- Комментарии будут загружены через JavaScript -->
+                </div>
+                <div class="comment-form">
+                <textarea placeholder="Ваш комментарий или улучшение..." id="commentInput" aria-label="Комментарий к шагу"></textarea>
+                    <button class="btn btn-primary" id="submitCommentBtn">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-send"></use></svg> Отправить
+                    </button>
+                </div>
+            </div>
+            
+            <div class="analytics-section">
+                <h3><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-chart"></use></svg> Аналитика по шагу</h3>
+                <div class="analytics-card">
+                    <div class="analytic-item">
+                        <div class="analytic-value">87%</div>
+                        <div class="analytic-label">Прошли шаг успешно</div>
+                    </div>
+                    <div class="analytic-item">
+                        <div class="analytic-value">3.2 мин</div>
+                        <div class="analytic-label">Среднее время на шаге</div>
+                    </div>
+                    <div class="analytic-item">
+                        <div class="analytic-value">12</div>
+                        <div class="analytic-label">Улучшений предложено</div>
+                    </div>
+                    <div class="analytic-item">
+                        <div class="analytic-value">4</div>
+                        <div class="analytic-label">Частые вопросы</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="noteModal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить заметку к шагу</h3>
+                <button class="modal-close" id="closeNoteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea placeholder="Ваша заметка..." id="noteTextarea" aria-label="Заметка к шагу"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelNoteBtn">Отмена</button>
+                <button class="btn btn-primary" id="saveNoteBtn">Сохранить заметку</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_text %}Проходите инструкции шаг за шагом.{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('asset', folder='js', filename='instruction.js') }}"></script>
+{% endblock %}

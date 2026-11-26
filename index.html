@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% set active_page = 'catalog' %}
+
+{% block title %}StepByStep - Платформа интерактивных инструкций{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Создай и пройди любую инструкцию шаг за шагом</h1>
+                <p class="subtitle">Разложите сложную задачу на понятные шаги. Создавайте инструкции и проходите их в своём темпе.</p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('page', name='create.html') }}" class="btn btn-primary btn-large">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus-circle"></use></svg> Создать инструкцию
+                    </a>
+                    <a href="#featured" class="btn btn-secondary btn-large">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-play-circle"></use></svg> Попробовать
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <section class="categories">
+            <h2>Популярные категории</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="tech" role="button" tabindex="0" aria-pressed="false">
+                    <div class="category-icon">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-laptop-code"></use></svg>
+                    </div>
+                    <h3>Технологии</h3>
+                    <p>Установка ПО, настройка серверов</p>
+                    <span class="count">128 инструкций</span>
+                </div>
+                
+                <div class="category-card" data-category="study" role="button" tabindex="0" aria-pressed="false">
+                    <div class="category-icon">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-book-open"></use></svg>
+                    </div>
+                    <h3>Учеба</h3>
+                    <p>Лабораторные, оформление работ</p>
+                    <span class="count">94 инструкции</span>
+                </div>
+                
+                <div class="category-card" data-category="diy" role="button" tabindex="0" aria-pressed="false">
+                    <div class="category-icon">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-tools"></use></svg>
+                    </div>
+                    <h3>DIY</h3>
+                    <p>Сборка, ремонт, творчество</p>
+                    <span class="count">76 инструкций</span>
+                </div>
+                
+                <div class="category-card" data-category="office" role="button" tabindex="0" aria-pressed="false">
+                    <div class="category-icon">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-file"></use></svg>
+                    </div>
+                    <h3>Офис</h3>
+                    <p>Отчеты, документы, процедуры</p>
+                    <span class="count">63 инструкции</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="featured" class="featured-instructions">
+            <div class="section-header">
+                <h2>Популярные инструкции</h2>
+                <a href="#featured" class="view-all">Смотреть все <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></a>
+            </div>
+            
+            <p id="catalogStatus" class="sr-only" aria-live="polite"></p>
+            <div class="instructions-grid" id="instructionsGrid">
+                <!-- Инструкции будут загружены через JavaScript -->
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>Как это работает</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Создай инструкцию</h3>
+                    <p>Разбей задачу на шаги, добавьте чек-листы и пояснения</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Поделись с другими</h3>
+                    <p>Опубликуйте инструкцию в каталоге или отправьте ссылку</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Следи за прогрессом</h3>
+                    <p>Авторы видят, на каких шагах пользователи спотыкаются</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Улучшай вместе</h3>
+                    <p>Комментарии и форки помогают делать инструкции лучше</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-checklist"></use></svg>
+                <div class="stat-number" data-count="548">548</div>
+                <div class="stat-label">Инструкций</div>
+            </div>
+            <div class="stat-card">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+                <div class="stat-number" data-count="2840">2 840</div>
+                <div class="stat-label">Пользователей</div>
+            </div>
+            <div class="stat-card">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check-circle"></use></svg>
+                <div class="stat-number" data-count="15700">15 700</div>
+                <div class="stat-label">Выполнено шагов</div>
+            </div>
+            <div class="stat-card">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-comments"></use></svg>
+                <div class="stat-number" data-count="892">892</div>
+                <div class="stat-label">Улучшений</div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-checklist"></use></svg>
+                    <span>StepByStep</span>
+                </div>
+                <p>Платформа интерактивных инструкций для любых задач</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Платформа</h3>
+                <a href="#">Каталог</a>
+                <a href="{{ url_for('page', name='create.html') }}">Создать инструкцию</a>
+                <a href="#">Для авторов</a>
+                <a href="#">Для организаций</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Документация</a>
+                <a href="#">Сообщество</a>
+                <a href="#">Контакты</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Присоединяйтесь</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Telegram"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-telegram"></use></svg></a>
+                    <a href="#" aria-label="VK"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-vk"></use></svg></a>
+                    <a href="#" aria-label="GitHub"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg></a>
+                    <a href="#" aria-label="YouTube"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-youtube"></use></svg></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ current_year }} StepByStep. Платформа интерактивных инструкций.</p>
+        </div>
+    </footer>
+{% endblock %}

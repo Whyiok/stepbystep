@@ -1,0 +1,47 @@
+{#
+  Общая шапка сайта. Подсветка текущего пункта берётся из переменной active_page,
+  которую страница задаёт у себя: {% set active_page = 'catalog' %}
+#}
+{% set nav_items = [
+    ('catalog',   'index.html',     'home',        'Каталог'),
+    ('dashboard', 'dashboard.html', 'gauge',       'Мои инструкции'),
+    ('create',    'create.html',    'plus-circle', 'Создать'),
+] %}
+<header class="shared-header">
+    <nav class="navbar shared-navbar" aria-label="Основная навигация">
+        <div class="nav-container">
+            <a class="shared-brand" href="{{ url_for('page', name='index.html') }}" aria-label="StepByStep — каталог">
+                <span class="shared-brand-mark" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#icon-checklist"></use></svg>
+                </span>
+                <span class="shared-brand-name">StepByStep</span>
+            </a>
+
+            <div class="search-bar shared-search">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg>
+                <input type="search" placeholder="Поиск инструкций..." id="searchInput" aria-label="Поиск инструкций" autocomplete="off">
+            </div>
+
+            <div class="nav-links" id="siteNav">
+                {% for key, page_name, icon, label in nav_items %}
+                <a href="{{ url_for('page', name=page_name) }}" data-page="{{ key }}"{% if active_page == key %} class="active" aria-current="page"{% endif %}>
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-{{ icon }}"></use></svg><span>{{ label }}</span>
+                </a>
+                {% endfor %}
+
+                <span class="nav-divider" aria-hidden="true"></span>
+
+                <a href="{{ url_for('page', name='login.html') }}" data-page="login"{% if active_page == 'login' %} class="active" aria-current="page"{% endif %}>
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-login"></use></svg><span>Войти</span>
+                </a>
+                <a href="{{ url_for('page', name='register.html') }}" data-page="register" class="btn btn-primary nav-register{% if active_page == 'register' %} active{% endif %}"{% if active_page == 'register' %} aria-current="page"{% endif %}>
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-user-plus"></use></svg><span>Регистрация</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
+            </button>
+        </div>
+    </nav>
+</header>

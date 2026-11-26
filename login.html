@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% set active_page = 'login' %}
+
+{% block title %}Вход - StepByStep{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('asset', folder='css', filename='auth.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-login"></use></svg> Вход в StepByStep</h1>
+                <p>Войдите чтобы создавать и проходить инструкции</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-envelope"></use></svg> Email
+                    </label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-lock"></use></svg> Пароль
+                    </label>
+                    <input type="password" id="password" name="password" placeholder="Ваш пароль" required>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        <span class="checkmark"></span>
+                        Запомнить меня
+                    </label>
+                    <a href="#" class="forgot-link" id="forgotPasswordLink">Забыли пароль?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-login"></use></svg> Войти
+                </button>
+                
+                <div class="form-divider">
+                    <span>или войдите через</span>
+                </div>
+                
+                <div class="social-auth">
+                    <button type="button" class="btn btn-social btn-google">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-google"></use></svg> Google
+                    </button>
+                    <button type="button" class="btn btn-social btn-github">
+                        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> GitHub
+                    </button>
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Ещё нет аккаунта? <a href="{{ url_for('page', name='register.html') }}">Зарегистрироваться</a></p>
+            </div>
+        </div>
+        
+        <div class="auth-info">
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-checklist"></use></svg>
+                </div>
+                <h3>Создавайте инструкции</h3>
+                <p>Делитесь своими знаниями в формате пошаговых инструкций</p>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-chart"></use></svg>
+                </div>
+                <h3>Следите за прогрессом</h3>
+                <p>Видите статистику по вашим инструкциям и улучшениям</p>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+                </div>
+                <h3>Присоединяйтесь к сообществу</h3>
+                <p>Помогайте другим и получайте помощь от экспертов</p>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block footer_text %}Платформа интерактивных инструкций.{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('asset', folder='js', filename='auth.js') }}"></script>
+{% endblock %}
